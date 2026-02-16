@@ -1,50 +1,121 @@
-# Welcome to your Expo app 👋
+🎵 Sound Bar – YouTube Audio Player (Expo + React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Sound Bar ek Expo + React Native based music search application hai jisme user YouTube API ki madad se apne favorite songs search kar sakta hai aur unhe app ke andar hi play kar sakta hai.
 
-## Get started
+Ye project create-expo-app se initialize kiya gaya tha aur baad me custom functionality implement ki gayi.
 
-1. Install dependencies
+🚀 Features
 
-   ```bash
-   npm install
-   ```
+🔎 YouTube Data API v3 se song search
 
-2. Start the app
+⚡ Real-time search with debounce
 
-   ```bash
-   npx expo start
-   ```
+🎬 YouTube embedded player
 
-In the output, you'll find options to open the app in a
+🎧 Audio-focused playback experience
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+📱 Landscape mode me fullscreen player
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+❌ Input clear (✕) button
 
-## Get a fresh project
+⏳ Loading indicator
 
-When you're ready, run:
+🎵 No results / Discover banner
 
-```bash
-npm run reset-project
-```
+🌙 Clean Dark UI
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+🛠 Tech Stack
 
-## Learn more
+Expo
 
-To learn more about developing your project with Expo, look at the following resources:
+React Native
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+react-native-youtube-iframe
 
-## Join the community
+YouTube Data API v3
 
-Join our community of developers creating universal apps.
+React Hooks (useState, useEffect, useCallback)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Debounce logic using setTimeout
+
+🔑 YouTube API Integration
+
+App me YouTube Data API v3 use ki gayi hai.
+
+API Endpoint Used:
+https://www.googleapis.com/youtube/v3/search
+
+Parameters:
+
+part=snippet
+
+q=searchQuery
+
+type=video
+
+maxResults=20
+
+key=API_KEY
+
+Implementation Flow:
+
+User search input me text type karta hai
+
+Debounce 500ms delay ke baad API call hoti hai
+
+Response se:
+
+videoId
+
+title
+extract kiya jata hai
+
+FlatList me results show hote hain
+
+User kisi result par click karta hai
+
+videoId YouTubePlayer ko pass hota hai
+
+Video play hota hai
+
+⚡ Real-Time Search with Debounce
+
+User jese jese type karta hai:
+
+useEffect trigger hota hai
+
+setTimeout (500ms) delay lagta hai
+
+Previous timeout clear hota hai
+
+Unnecessary multiple API calls avoid hoti hain
+
+Isse performance improve hoti hai aur API quota save hota hai.
+
+🎬 YouTube Player Integration
+
+Library used:
+
+react-native-youtube-iframe
+
+Player Props:
+
+videoId → selected video ID
+
+play → playback control
+
+onChangeState → detect video end
+
+Landscape mode me:
+
+Search UI hide ho jata hai
+
+Player fullscreen height le leta hai
+
+📱 Orientation Handling
+
+Dimensions.addEventListener use karke:
+
+Portrait → search + list visible
+
+Landscape → fullscreen player mode
